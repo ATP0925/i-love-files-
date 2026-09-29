@@ -6,6 +6,9 @@
     <title>Tool Page | EduFile Ultra</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- LIBRARIES FOR REAL FUNCTIONALITY -->
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: #050810; color: #e2e8f0; }
@@ -13,18 +16,13 @@
         .upload-area { border: 2px dashed rgba(0, 242, 255, 0.3); transition: all 0.3s ease; }
         .upload-area:hover { border-color: #00f2ff; background: rgba(0, 242, 255, 0.05); }
         .gradient-text { background: linear-gradient(90deg, #00f2ff, #7000ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
-        /* Skeleton Animation */
         .skeleton {
             background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
             background-size: 200% 100%;
             animation: skeleton-loading 1.5s infinite linear;
             border-radius: 8px;
         }
-        @keyframes skeleton-loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
+        @keyframes skeleton-loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -41,7 +39,6 @@
     </nav>
 
     <main class="flex-1 max-w-4xl mx-auto w-full px-6 py-16">
-        <!-- Header with Skeleton -->
         <div class="text-center mb-12" id="header-section">
             <div id="skeleton-header">
                 <div class="h-10 w-64 skeleton mx-auto mb-4"></div>
@@ -59,7 +56,7 @@
                     <i class="fas fa-cloud-upload-alt text-4xl"></i>
                 </div>
                 <h3 class="text-2xl font-bold mb-2">Click or Drag & Drop Files</h3>
-                <p class="text-slate-400 mb-8">Your files are processed locally and securely.</p>
+                <p class="text-slate-400 mb-8">Files are processed 100% locally in your browser.</p>
                 <input type="file" id="file-input" class="hidden" multiple>
                 <button onclick="document.getElementById('file-input').click()" class="bg-cyan-500 hover:bg-cyan-400 px-8 py-3 rounded-xl font-bold transition text-black">
                     Select Files
@@ -71,25 +68,22 @@
                 <div id="file-list" class="space-y-3 mb-8"></div>
                 <div class="flex justify-center">
                     <button id="process-btn" class="w-full md:w-auto bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 px-12 py-4 rounded-2xl font-bold text-lg transition text-black">
-                        Process Files Now <i class="fas fa-bolt ml-2"></i>
+                        Process & Download <i class="fas fa-bolt ml-2"></i>
                     </button>
                 </div>
             </div>
 
-            <!-- Processing with Skeleton -->
-            <div id="processing-state" class="hidden py-12">
+            <div id="processing-state" class="hidden py-12 text-center">
                 <div class="max-w-sm mx-auto space-y-4">
-                    <div class="h-6 w-full skeleton"></div>
+                    <div class="h-6 w-full skeleton mx-auto"></div>
                     <div class="h-6 w-3/4 skeleton mx-auto"></div>
-                    <div class="h-6 w-1/2 skeleton mx-auto"></div>
                 </div>
-                <p class="text-center text-cyan-500 mt-6 animate-pulse font-semibold">Optimizing your files...</p>
+                <p class="text-center text-cyan-500 mt-6 animate-pulse font-semibold">Processing your files locally...</p>
             </div>
         </div>
     </main>
-
     <footer class="py-8 text-center text-slate-600 text-sm">
-        &copy; 2026 EduFile Ultra. Secured by Client-Side Encryption.
+        &copy; 2026 EduFile Ultra. Professional File Suite.
     </footer>
 </body>
 </html>
