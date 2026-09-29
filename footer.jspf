@@ -1,0 +1,6 @@
+<footer class="foot">
+  <p>&copy; 2026 I Love Files. A Java (Servlet + JSP) mini project.</p>
+  <p><a href="${pageContext.request.contextPath}/terms.jsp">Terms &amp; Privacy</a></p>
+</footer>
+</body>
+</html>
