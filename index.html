@@ -3,228 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduFile Ultra | The Universal File Studio</title>
+    <title>11zon Clone | All-in-One File Tools</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
-        :root { --primary: #00f2ff; --secondary: #7000ff; --bg: #050810; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: #e2e8f0; overflow-x: hidden; }
-        .cyber-glass { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(0, 242, 255, 0.1); }
-        .tool-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; }
-        .tool-card:hover { transform: scale(1.05); border-color: var(--primary); box-shadow: 0 0 30px rgba(0, 242, 255, 0.2); }
-        .neon-text { color: var(--primary); text-shadow: 0 0 10px rgba(0, 242, 255, 0.5); }
-        .hero-gradient { background: radial-gradient(circle at 50% -20%, #1e293b 0%, #050810 60%); }
-        .search-glow:focus { box-shadow: 0 0 20px rgba(0, 242, 255, 0.3); border-color: var(--primary); }
-        .category-pill { transition: all 0.3s; cursor: pointer; }
-        .category-pill.active { background: var(--primary); color: #000; box-shadow: 0 0 15px var(--primary); }
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+        body { font-family: 'Roboto', sans-serif; background-color: #f8fafc; color: #334155; }
+        .nav-shadow { box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .tool-card { 
+            background: white; 
+            border: 1px solid #e2e8f0; 
+            transition: all 0.2s ease; 
+            cursor: pointer;
+        }
+        .tool-card:hover { 
+            border-color: #3b82f6; 
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        .btn-primary { background-color: #3b82f6; color: white; }
+        .btn-primary:hover { background-color: #2563eb; }
     </style>
 </head>
-<body class="min-h-screen hero-gradient">
-    <nav class="cyber-glass sticky top-0 z-50 px-6 py-4 flex justify-between items-center border-b border-cyan-500/20">
-        <div class="flex items-center gap-3 group cursor-pointer">
-            <div class="bg-gradient-to-br from-cyan-400 to-blue-600 p-2 rounded-xl rotate-3 group-hover:rotate-0 transition-all duration-300">
-                <i class="fas fa-bolt text-white text-xl"></i>
-            </div>
-            <span class="text-2xl font-extrabold tracking-tighter">EduFile <span class="neon-text">Ultra</span></span>
+<body>
+    <!-- Simple Clean Navbar -->
+    <nav class="bg-white nav-shadow sticky top-0 z-50 px-6 py-3 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <div class="text-blue-600 text-2xl font-bold">11zon<span class="text-slate-800">Clone</span></div>
         </div>
-        <div class="hidden lg:flex gap-6 text-sm font-semibold text-slate-400">
-            <a href="#" class="hover:text-cyan-400 transition">Universal Studio</a>
-            <a href="#" class="hover:text-cyan-400 transition">Convert Matrix</a>
-            <a href="#" class="hover:text-cyan-400 transition">AI Assistant</a>
-            <a href="#" class="hover:text-cyan-400 transition">Security</a>
+        <div class="hidden md:flex gap-6 text-sm font-medium text-slate-600">
+            <a href="#" class="hover:text-blue-600">PDF Tools</a>
+            <a href="#" class="hover:text-blue-600">Image Tools</a>
+            <a href="#" class="hover:text-blue-600">Converters</a>
+            <a href="#" class="hover:text-blue-600">About</a>
         </div>
-        <button class="bg-cyan-500 hover:bg-cyan-400 px-5 py-2 rounded-lg text-black font-bold transition-all shadow-lg shadow-cyan-500/30">Login</button>
+        <button class="btn-primary px-4 py-2 rounded-md text-sm font-medium transition">Login</button>
     </nav>
 
-    <header class="max-w-6xl mx-auto pt-24 pb-12 px-6 text-center">
-        <div class="inline-block px-4 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold mb-6 uppercase tracking-widest animate-bounce">
-            Full File Editing & Conversion OS
-        </div>
-        <h1 class="text-6xl md:text-8xl font-extrabold mb-8 leading-none tracking-tighter">
-            Create, Edit & <br><span class="neon-text">Convert Everything.</span>
-        </h1>
-        <div class="relative max-w-2xl mx-auto mb-16">
-            <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-2xl blur opacity-20"></div>
-            <div class="relative flex items-center">
-                <i class="fas fa-search absolute left-5 text-slate-500"></i>
-                <input type="text" id="toolSearch" onkeyup="filterTools()" placeholder="Search 'Edit Image', 'Convert PDF to Word'..." 
-                class="w-full cyber-glass pl-14 pr-6 py-5 rounded-2xl focus:outline-none search-glow transition-all text-lg">
-            </div>
-        </div>
-        <div class="flex flex-wrap justify-center gap-3 mb-12">
-            <div class="category-pill active px-6 py-2 rounded-full border border-cyan-500/30 text-sm font-bold" onclick="filterCategory('all', this)">All Studio</div>
-            <div class="category-pill px-6 py-2 rounded-full border border-cyan-500/30 text-sm font-bold" onclick="filterCategory('pdf', this)">PDF Suite</div>
-            <div class="category-pill px-6 py-2 rounded-full border border-cyan-500/30 text-sm font-bold" onclick="filterCategory('image', this)">Image Studio</div>
-            <div class="category-pill px-6 py-2 rounded-full border border-cyan-500/30 text-sm font-bold" onclick="filterCategory('doc', this)">Docs Hub</div>
-            <div class="category-pill px-6 py-2 rounded-full border border-cyan-500/30 text-sm font-bold" onclick="filterCategory('edit', this)">Editors</div>
-            <div class="category-pill px-6 py-2 rounded-full border border-cyan-500/30 text-sm font-bold" onclick="filterCategory('sec', this)">Security</div>
+    <!-- Simple Hero -->
+    <header class="max-w-6xl mx-auto pt-16 pb-10 px-6 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Online File Tools</h1>
+        <p class="text-slate-500 text-lg mb-10">Fast, free, and secure tools to manage your documents and images.</p>
+        
+        <div class="relative max-w-xl mx-auto">
+            <input type="text" id="toolSearch" onkeyup="filterTools()" placeholder="Search for a tool..." 
+            class="w-full border border-slate-300 px-5 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition text-slate-700">
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6 pb-24">
+    <!-- Tools Grid -->
+    <main class="max-w-6xl mx-auto px-6 pb-20">
         <div id="toolsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            
-            <!-- EDITORS SECTION -->
-            <a href="editor.html?type=image" data-cat="edit" class="tool-card cyber-glass p-6 rounded-3xl group border-2 border-cyan-500/30">
-                <div class="w-14 h-14 bg-cyan-500/20 text-cyan-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-cyan-500 group-hover:text-white transition">
-                    <i class="fas fa-paint-brush text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">Image Editor</h3>
-                <p class="text-slate-500 text-sm">Crop, Resize, Filter and Annotate images online.</p>
+            <!-- PDF Tools -->
+            <a href="tool.html?tool=merge-pdf" data-cat="pdf" class="tool-card p-6 rounded-xl">
+                <div class="text-red-500 text-3xl mb-4"><i class="fas fa-layer-group"></i></div>
+                <h3 class="text-lg font-bold mb-1 text-slate-800">Merge PDF</h3>
+                <p class="text-slate-500 text-sm">Combine multiple PDFs into one.</p>
             </a>
-            <a href="editor.html?type=pdf" data-cat="edit" class="tool-card cyber-glass p-6 rounded-3xl group border-2 border-cyan-500/30">
-                <div class="w-14 h-14 bg-red-500/20 text-red-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-red-500 group-hover:text-white transition">
-                    <i class="fas fa-edit text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">PDF Editor</h3>
-                <p class="text-slate-500 text-sm">Add text, sign, and modify PDF pages.</p>
+            <a href="tool.html?tool=split-pdf" data-cat="pdf" class="tool-card p-6 rounded-xl">
+                <div class="text-orange-500 text-3xl mb-4"><i class="fas fa-scissors"></i></div>
+                <h3 class="text-lg font-bold mb-1 text-slate-800">Split PDF</h3>
+                <p class="text-slate-500 text-sm">Separate pages of a PDF.</p>
             </a>
-            <a href="editor.html?type=text" data-cat="edit" class="tool-card cyber-glass p-6 rounded-3xl group border-2 border-cyan-500/30">
-                <div class="w-14 h-14 bg-blue-500/20 text-blue-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-blue-500 group-hover:text-white transition">
-                    <i class="fas fa-file-alt text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">Doc Editor</h3>
-                <p class="text-slate-500 text-sm">Professional text and markdown editor.</p>
+            <a href="tool.html?tool=compress-pdf" data-cat="pdf" class="tool-card p-6 rounded-xl">
+                <div class="text-blue-500 text-3xl mb-4"><i class="fas fa-compress-arrows-alt"></i></div>
+                <h3 class="text-lg font-bold mb-1 text-slate-800">Compress PDF</h3>
+                <p class="text-slate-500 text-sm">Reduce the size of your PDF.</p>
+            </a>
+            <a href="tool.html?tool=pdf-rotate" data-cat="pdf" class="tool-card p-6 rounded-xl">
+                <div class="text-indigo-500 text-3xl mb-4"><i class="fas fa-redo"></i></div>
+                <h3 class="text-lg font-bold mb-1 text-slate-800">Rotate PDF</h3>
+                <p class="text-slate-500 text-sm">Fix rotated PDF pages.</p>
             </a>
 
-            <!-- PDF CONVERSIONS -->
-            <a href="tool.html?tool=pdf-to-word" data-cat="pdf" class="tool-card cyber-glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-blue-500/20 text-blue-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-blue-500 group-hover:text-white transition">
-                    <i class="fas fa-file-word text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">PDF to Word</h3>
-                <p class="text-slate-500 text-sm">Convert PDF to editable DOCX.</p>
+            <!-- Image Tools -->
+            <a href="tool.html?tool=compress-img" data-cat="image" class="tool-card p-6 rounded-xl">
+                <div class="text-purple-500 text-3xl mb-4"><i class="fas fa-file-archive"></i></div>
+                <h3 class="text-lg font-bold mb-1 text-slate-800">Compress Image</h3>
+                <p class="text-slate-500 text-sm">Shrink image size online.</p>
             </a>
-            <a href="tool.html?tool=pdf-to-excel" data-cat="pdf" class="tool-card cyber-glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-green-500/20 text-green-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-green-500 group-hover:text-white transition">
-                    <i class="fas fa-file-excel text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">PDF to Excel</h3>
-                <p class="text-slate-500 text-sm">Convert PDF tables to XLSX.</p>
+            <a href="tool.html?tool=img-to-pdf" data-cat="image" class="tool-card p-6 rounded-xl">
+                <div class="text-green-500 text-3xl mb-4"><i class="fas fa-file-image"></i></div>
+                <h3 class="text-lg font-bold mb-1 text-slate-800">Image to PDF</h3>
+                <p class="text-slate-500 text-sm">Convert JPG/PNG to PDF.</p>
             </a>
-            <a href="tool.html?tool=pdf-to-jpg" data-cat="pdf" class="tool-card cyber-glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-yellow-500/20 text-yellow-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-yellow-500 group-hover:text-white transition">
-                    <i class="fas fa-image text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">PDF to JPG</h3>
-                <p class="text-slate-500 text-sm">Export PDF pages as images.</p>
+            <a href="tool.html?tool=jpg-to-png" data-cat="image" class="tool-card p-6 rounded-xl">
+                <div class="text-pink-500 text-3xl mb-4"><i class="fas fa-exchange-alt"></i></div>
+                <h3 class="text-lg font-bold mb-1 text-slate-800">JPG to PNG</h3>
+                <p class="text-slate-500 text-sm">Change image format to PNG.</p>
             </a>
-            <a href="tool.html?tool=merge-pdf" data-cat="pdf" class="tool-card cyber-glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-red-500/20 text-red-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-red-500 group-hover:text-white transition">
-                    <i class="fas fa-layer-group text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">Merge PDF</h3>
-                <p class="text-slate-500 text-sm">Combine multiple PDFs.</p>
+            <a href="tool.html?tool=png-to-jpg" data-cat="image" class="tool-card p-6 rounded-xl">
+                <div class="text-cyan-500 text-3xl mb-4"><i class="fas fa-exchange-alt"></i></div>
+                <h3 class="text-lg font-bold mb-1 text-slate-800">PNG to JPG</h3>
+                <p class="text-slate-500 text-sm">Change image format to JPG.</p>
             </a>
 
-            <!-- IMAGE HUB -->
-            <a href="tool.html?tool=compress-img" data-cat="image" class="tool-card cyber-glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-purple-500/20 text-purple-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-purple-500 group-hover:text-white transition">
-                    <i class="fas fa-compress-arrows-alt text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">Compress Image</h3>
-                <p class="text-slate-500 text-sm">Reduce image size instantly.</p>
+            <!-- Converters -->
+            <a href="tool.html?tool=pdf-to-word" data-cat="conv" class="tool-card p-6 rounded-xl">
+                <div class="text-blue-600 text-3xl mb-4"><i class="fas fa-file-word"></i></div>
+                <h3 class="text-lg font-bold mb-1 text-slate-800">PDF to Word</h3>
+                <p class="text-slate-500 text-sm">Convert PDF to editable Word.</p>
             </a>
-            <a href="tool.html?tool=img-to-pdf" data-cat="image" class="tool-card cyber-glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-green-500/20 text-green-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-green-500 group-hover:text-white transition">
-                    <i class="fas fa-file-image text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">Image to PDF</h3>
-                <p class="text-slate-500 text-sm">Combine JPG/PNG into a PDF.</p>
+            <a href="tool.html?tool=pdf-to-excel" data-cat="conv" class="tool-card p-6 rounded-xl">
+                <div class="text-green-600 text-3xl mb-4"><i class="fas fa-file-excel"></i></div>
+                <h3 class="text-lg font-bold mb-1 text-slate-800">PDF to Excel</h3>
+                <p class="text-slate-500 text-sm">Extract PDF tables to Excel.</p>
             </a>
-            <a href="tool.html?tool=jpg-to-png" data-cat="image" class="tool-card cyber-glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-pink-500/20 text-pink-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-pink-500 group-hover:text-white transition">
-                    <i class="fas fa-exchange-alt text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">JPG to PNG</h3>
-                <p class="text-slate-500 text-sm">Convert JPG to transparent PNG.</p>
+            <a href="tool.html?tool=word-to-pdf" data-cat="conv" class="tool-card p-6 rounded-xl">
+                <div class="text-blue-700 text-3xl mb-4"><i class="fas fa-file-word"></i></div>
+                <h3 class="text-lg font-bold mb-1 text-slate-800">Word to PDF</h3>
+                <p class="text-slate-500 text-sm">Save Word documents as PDF.</p>
             </a>
-            <a href="tool.html?tool=png-to-jpg" data-cat="image" class="tool-card cyber-glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-cyan-500/20 text-cyan-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-cyan-500 group-hover:text-white transition">
-                    <i class="fas fa-exchange-alt text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">PNG to JPG</h3>
-                <p class="text-slate-500 text-sm">Convert PNG to compressed JPG.</p>
-            </a>
-
-            <!-- DOCS HUB -->
-            <a href="tool.html?tool=word-to-pdf" data-cat="doc" class="tool-card cyber-glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-blue-600/20 text-blue-600 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition">
-                    <i class="fas fa-file-word text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">Word to PDF</h3>
-                <p class="text-slate-500 text-sm">Convert DOCX to professional PDF.</p>
-            </a>
-            <a href="tool.html?tool=excel-to-pdf" data-cat="doc" class="tool-card cyber-glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-green-600/20 text-green-600 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-green-600 group-hover:text-white transition">
-                    <i class="fas fa-file-excel text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">Excel to PDF</h3>
-                <p class="text-slate-500 text-sm">Convert spreadsheets to PDF.</p>
-            </a>
-            <a href="tool.html?tool=txt-to-pdf" data-cat="doc" class="tool-card cyber-glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-slate-600/20 text-slate-600 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-slate-600 group-hover:text-white transition">
-                    <i class="fas fa-file-alt text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">Text to PDF</h3>
-                <p class="text-slate-500 text-sm">Convert TXT files to PDF.</p>
-            </a>
-
-            <!-- SECURITY -->
-            <a href="tool.html?tool=pdf-protect" data-cat="sec" class="tool-card cyber-glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-slate-700/20 text-slate-400 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-slate-700 group-hover:text-white transition">
-                    <i class="fas fa-lock text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">Protect PDF</h3>
-                <p class="text-slate-500 text-sm">Add password to your PDF.</p>
-            </a>
-            <a href="tool.html?tool=pdf-unlock" data-cat="sec" class="tool-card cyber-glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-slate-700/20 text-slate-400 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-slate-700 group-hover:text-white transition">
-                    <i class="fas fa-unlock text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">Unlock PDF</h3>
-                <p class="text-slate-500 text-sm">Remove PDF passwords.</p>
-            </a>
-            <a href="tool.html?tool=pdf-watermark" data-cat="sec" class="tool-card cyber-glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-slate-700/20 text-slate-400 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-slate-700 group-hover:text-white transition">
-                    <i class="fas fa-stamp text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">Add Watermark</h3>
-                <p class="text-slate-500 text-sm">Brand your PDF documents.</p>
-            </a>
-            <a href="tool.html?tool=pdf-ocr" data-cat="sec" class="tool-card cyber-glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-cyan-600/20 text-cyan-600 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-cyan-600 group-hover:text-white transition">
-                    <i class="fas fa-brain text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">AI PDF OCR</h3>
-                <p class="text-slate-500 text-sm">Extract text from scanned PDFs.</p>
+            <a href="tool.html?tool=excel-to-pdf" data-cat="conv" class="tool-card p-6 rounded-xl">
+                <div class="text-green-700 text-3xl mb-4"><i class="fas fa-file-excel"></i></div>
+                <h3 class="text-lg font-bold mb-1 text-slate-800">Excel to PDF</h3>
+                <p class="text-slate-500 text-sm">Save spreadsheets as PDF.</p>
             </a>
         </div>
     </main>
 
-    <script>
-        function filterTools() {
-            const input = document.getElementById('toolSearch').value.toLowerCase();
-            const cards = document.querySelectorAll('.tool-card');
-            cards.forEach(card => {
-                const text = card.innerText.toLowerCase();
-                card.style.display = text.includes(input) ? 'block' : 'none';
-            });
-        }
-
-        function filterCategory(cat, el) {
-            document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
-            el.classList.add('active');
-            const cards = document.querySelectorAll('.tool-card');
-            cards.forEach(card => {
-                if(cat === 'all' || card.getAttribute('data-cat') === cat) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-    </script>
+    <footer class="bg-white border-t border-slate-200 py-10 text-center text-slate-500 text-sm">
+        <p>&copy; 2026 11zon Clone. All rights reserved.</p>
+    </footer>
 </body>
 </html>
