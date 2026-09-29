@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         'img-to-pdf': { title: 'Image to PDF', desc: 'Convert JPG/PNG images into a clean PDF.' },
         'compress-img': { title: 'Compress Image', desc: 'Reduce image size locally.' },
         'pdf-to-jpg': { title: 'PDF to JPG', desc: 'Export PDF pages as images.' },
-        'rotate-pdf': { title: 'Rotate PDF', desc: 'Rotate PDF pages 90 degrees.' },
+        'rotate-pdf': { title: 'Rotate PDF', desc: 'Fix the orientation of your PDF pages.' },
         'word-to-pdf': { title: 'Word to PDF', desc: 'Local .docx to PDF conversion.' }
     };
 
@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }, 400);
     }
 
+    // CORRECT SELECTORS
     const fileInput = document.getElementById('file-input');
     const fileList = document.getElementById('file-list');
     const fileListContainer = document.getElementById('file-list-container');
@@ -36,22 +37,41 @@ document.addEventListener('DOMContentLoaded', async () => {
     const processBtn = document.getElementById('process-btn');
     const processingState = document.getElementById('processing-state');
 
-    fileInput.addEventListener('change', handleFiles);
-    dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('bg-cyan-500/10'); });
-    dropZone.addEventListener('dragleave', () => { dropZone.classList.remove('bg-cyan-500/10'); });
+    // Trigger file input when dropzone is clicked
+    if(dropZone) {
+        dropZone.addEventListener('click', () => {
+            fileInput.click();
+        });
+    }
+
+    fileInput.addEventListener('change', (e) => {
+        handleFiles(e.target.files);
+    });
+
+    dropZone.addEventListener('dragover', (e) => { 
+        e.preventDefault(); 
+        dropZone.classList.add('bg-cyan-500/10'); 
+    });
+    
+    dropZone.addEventListener('dragleave', () => { 
+        dropZone.classList.remove('bg-cyan-500/10'); 
+    });
+    
     dropZone.addEventListener('drop', (e) => {
         e.preventDefault();
         dropZone.classList.remove('bg-cyan-500/10');
-        handleFiles({ target: { files: e.dataTransfer.files } });
+        handleFiles(e.dataTransfer.files);
     });
 
-    function handleFiles(e) {
-        const files = Array.from(e.target.files);
-        if (files.length === 0) return;
+    function handleFiles(files) {
+        if (!files || files.length === 0) return;
+        
+        // Show the list container and hide drop zone
         fileListContainer.classList.remove('hidden');
         dropZone.classList.add('hidden');
+
         fileList.innerHTML = '';
-        files.forEach((file, index) => {
+        Array.from(files).forEach((file) => {
             const item = document.createElement('div');
             item.className = 'flex items-center justify-between p-4 cyber-glass rounded-xl';
             item.innerHTML = `
@@ -59,10 +79,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <i class="fas fa-file-alt text-cyan-500"></i>
                     <span class="text-sm truncate max-w-[200px]">${file.name}</span>
                 </div>
-                <button onclick="this.parentElement.remove()" class="text-slate-500 hover:text-red-500 transition">
+                <button class="text-slate-500 hover:text-red-500 transition" onclick="this.parentElement.remove()">
                     <i class="fas fa-times"></i>
                 </button>
-            </div>`;
+            `;
             fileList.appendChild(item);
         });
     }
@@ -78,8 +98,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     processBtn.addEventListener('click', async () => {
-        const files = Array.from(fileInput.files);
-        if (files.length === 0) return;
+        const files = fileInput.files;
+        if (!files || files.length === 0) {
+            alert('Please select files first!');
+            return;
+        }
 
         fileListContainer.classList.add('hidden');
         processingState.classList.remove('hidden');
