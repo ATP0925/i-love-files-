@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduFile Ultra | The Universal Conversion Hub</title>
+    <title>EduFile Ultra | The Universal File Studio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -29,9 +29,9 @@
             <span class="text-2xl font-extrabold tracking-tighter">EduFile <span class="neon-text">Ultra</span></span>
         </div>
         <div class="hidden lg:flex gap-6 text-sm font-semibold text-slate-400">
-            <a href="#" class="hover:text-cyan-400 transition">Universal Converter</a>
-            <a href="#" class="hover:text-cyan-400 transition">PDF Suite</a>
-            <a href="#" class="hover:text-cyan-400 transition">Image Hub</a>
+            <a href="#" class="hover:text-cyan-400 transition">Universal Studio</a>
+            <a href="#" class="hover:text-cyan-400 transition">Convert Matrix</a>
+            <a href="#" class="hover:text-cyan-400 transition">AI Assistant</a>
             <a href="#" class="hover:text-cyan-400 transition">Security</a>
         </div>
         <button class="bg-cyan-500 hover:bg-cyan-400 px-5 py-2 rounded-lg text-black font-bold transition-all shadow-lg shadow-cyan-500/30">Login</button>
@@ -39,31 +39,56 @@
 
     <header class="max-w-6xl mx-auto pt-24 pb-12 px-6 text-center">
         <div class="inline-block px-4 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold mb-6 uppercase tracking-widest animate-bounce">
-            Universal File Conversion Matrix
+            Full File Editing & Conversion OS
         </div>
         <h1 class="text-6xl md:text-8xl font-extrabold mb-8 leading-none tracking-tighter">
-            Convert Anything <br><span class="neon-text">Instantly.</span>
+            Create, Edit & <br><span class="neon-text">Convert Everything.</span>
         </h1>
         <div class="relative max-w-2xl mx-auto mb-16">
             <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-2xl blur opacity-20"></div>
             <div class="relative flex items-center">
                 <i class="fas fa-search absolute left-5 text-slate-500"></i>
-                <input type="text" id="toolSearch" onkeyup="filterTools()" placeholder="Search e.g. 'PDF to Word', 'JPG to PNG'..." 
+                <input type="text" id="toolSearch" onkeyup="filterTools()" placeholder="Search 'Edit Image', 'Convert PDF to Word'..." 
                 class="w-full cyber-glass pl-14 pr-6 py-5 rounded-2xl focus:outline-none search-glow transition-all text-lg">
             </div>
         </div>
         <div class="flex flex-wrap justify-center gap-3 mb-12">
-            <div class="category-pill active px-6 py-2 rounded-full border border-cyan-500/30 text-sm font-bold" onclick="filterCategory('all', this)">All Tools</div>
+            <div class="category-pill active px-6 py-2 rounded-full border border-cyan-500/30 text-sm font-bold" onclick="filterCategory('all', this)">All Studio</div>
             <div class="category-pill px-6 py-2 rounded-full border border-cyan-500/30 text-sm font-bold" onclick="filterCategory('pdf', this)">PDF Suite</div>
-            <div class="category-pill px-6 py-2 rounded-full border border-cyan-500/30 text-sm font-bold" onclick="filterCategory('image', this)">Image Hub</div>
-            <div class="category-pill px-6 py-2 rounded-full border border-cyan-500/30 text-sm font-bold" onclick="filterCategory('doc', this)">Document Convert</div>
+            <div class="category-pill px-6 py-2 rounded-full border border-cyan-500/30 text-sm font-bold" onclick="filterCategory('image', this)">Image Studio</div>
+            <div class="category-pill px-6 py-2 rounded-full border border-cyan-500/30 text-sm font-bold" onclick="filterCategory('doc', this)">Docs Hub</div>
+            <div class="category-pill px-6 py-2 rounded-full border border-cyan-500/30 text-sm font-bold" onclick="filterCategory('edit', this)">Editors</div>
             <div class="category-pill px-6 py-2 rounded-full border border-cyan-500/30 text-sm font-bold" onclick="filterCategory('sec', this)">Security</div>
         </div>
     </header>
 
     <main class="max-w-7xl mx-auto px-6 pb-24">
         <div id="toolsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- PDF TO ... -->
+            
+            <!-- EDITORS SECTION -->
+            <a href="editor.html?type=image" data-cat="edit" class="tool-card cyber-glass p-6 rounded-3xl group border-2 border-cyan-500/30">
+                <div class="w-14 h-14 bg-cyan-500/20 text-cyan-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-cyan-500 group-hover:text-white transition">
+                    <i class="fas fa-paint-brush text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Image Editor</h3>
+                <p class="text-slate-500 text-sm">Crop, Resize, Filter and Annotate images online.</p>
+            </a>
+            <a href="editor.html?type=pdf" data-cat="edit" class="tool-card cyber-glass p-6 rounded-3xl group border-2 border-cyan-500/30">
+                <div class="w-14 h-14 bg-red-500/20 text-red-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-red-500 group-hover:text-white transition">
+                    <i class="fas fa-edit text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">PDF Editor</h3>
+                <p class="text-slate-500 text-sm">Add text, sign, and modify PDF pages.</p>
+            </a>
+            <a href="editor.html?type=text" data-cat="edit" class="tool-card cyber-glass p-6 rounded-3xl group border-2 border-cyan-500/30">
+                <div class="w-14 h-14 bg-blue-500/20 text-blue-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-blue-500 group-hover:text-white transition">
+                    <i class="fas fa-file-alt text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Doc Editor</h3>
+                <p class="text-slate-500 text-sm">Professional text and markdown editor.</p>
+            </a>
+
+            <!-- PDF CONVERSIONS -->
             <a href="tool.html?tool=pdf-to-word" data-cat="pdf" class="tool-card cyber-glass p-6 rounded-3xl group">
                 <div class="w-14 h-14 bg-blue-500/20 text-blue-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-blue-500 group-hover:text-white transition">
                     <i class="fas fa-file-word text-2xl"></i>
@@ -78,13 +103,6 @@
                 <h3 class="text-xl font-bold mb-2">PDF to Excel</h3>
                 <p class="text-slate-500 text-sm">Convert PDF tables to XLSX.</p>
             </a>
-            <a href="tool.html?tool=pdf-to-ppt" data-cat="pdf" class="tool-card cyber-glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-orange-500/20 text-orange-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-orange-500 group-hover:text-white transition">
-                    <i class="fas fa-file-powerpoint text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">PDF to PPT</h3>
-                <p class="text-slate-500 text-sm">Convert PDF to PowerPoint slides.</p>
-            </a>
             <a href="tool.html?tool=pdf-to-jpg" data-cat="pdf" class="tool-card cyber-glass p-6 rounded-3xl group">
                 <div class="w-14 h-14 bg-yellow-500/20 text-yellow-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-yellow-500 group-hover:text-white transition">
                     <i class="fas fa-image text-2xl"></i>
@@ -92,38 +110,29 @@
                 <h3 class="text-xl font-bold mb-2">PDF to JPG</h3>
                 <p class="text-slate-500 text-sm">Export PDF pages as images.</p>
             </a>
+            <a href="tool.html?tool=merge-pdf" data-cat="pdf" class="tool-card cyber-glass p-6 rounded-3xl group">
+                <div class="w-14 h-14 bg-red-500/20 text-red-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-red-500 group-hover:text-white transition">
+                    <i class="fas fa-layer-group text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Merge PDF</h3>
+                <p class="text-slate-500 text-sm">Combine multiple PDFs.</p>
+            </a>
 
-            <!-- ... TO PDF -->
-            <a href="tool.html?tool=word-to-pdf" data-cat="doc" class="tool-card cyber-glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-blue-600/20 text-blue-600 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition">
-                    <i class="fas fa-file-word text-2xl"></i>
+            <!-- IMAGE HUB -->
+            <a href="tool.html?tool=compress-img" data-cat="image" class="tool-card cyber-glass p-6 rounded-3xl group">
+                <div class="w-14 h-14 bg-purple-500/20 text-purple-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-purple-500 group-hover:text-white transition">
+                    <i class="fas fa-compress-arrows-alt text-2xl"></i>
                 </div>
-                <h3 class="text-xl font-bold mb-2">Word to PDF</h3>
-                <p class="text-slate-500 text-sm">Convert DOCX to professional PDF.</p>
-            </a>
-            <a href="tool.html?tool=excel-to-pdf" data-cat="doc" class="tool-card cyber-glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-green-600/20 text-green-600 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-green-600 group-hover:text-white transition">
-                    <i class="fas fa-file-excel text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">Excel to PDF</h3>
-                <p class="text-slate-500 text-sm">Convert spreadsheets to PDF.</p>
-            </a>
-            <a href="tool.html?tool=ppt-to-pdf" data-cat="doc" class="tool-card cyber-glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-orange-600/20 text-orange-600 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-orange-600 group-hover:text-white transition">
-                    <i class="fas fa-file-powerpoint text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">PPT to PDF</h3>
-                <p class="text-slate-500 text-sm">Convert presentations to PDF.</p>
+                <h3 class="text-xl font-bold mb-2">Compress Image</h3>
+                <p class="text-slate-500 text-sm">Reduce image size instantly.</p>
             </a>
             <a href="tool.html?tool=img-to-pdf" data-cat="image" class="tool-card cyber-glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-purple-600/20 text-purple-600 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-purple-600 group-hover:text-white transition">
+                <div class="w-14 h-14 bg-green-500/20 text-green-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-green-500 group-hover:text-white transition">
                     <i class="fas fa-file-image text-2xl"></i>
                 </div>
                 <h3 class="text-xl font-bold mb-2">Image to PDF</h3>
                 <p class="text-slate-500 text-sm">Combine JPG/PNG into a PDF.</p>
             </a>
-
-            <!-- IMAGE CONVERSIONS -->
             <a href="tool.html?tool=jpg-to-png" data-cat="image" class="tool-card cyber-glass p-6 rounded-3xl group">
                 <div class="w-14 h-14 bg-pink-500/20 text-pink-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-pink-500 group-hover:text-white transition">
                     <i class="fas fa-exchange-alt text-2xl"></i>
@@ -138,49 +147,28 @@
                 <h3 class="text-xl font-bold mb-2">PNG to JPG</h3>
                 <p class="text-slate-500 text-sm">Convert PNG to compressed JPG.</p>
             </a>
-            <a href="tool.html?tool=webp-to-jpg" data-cat="image" class="tool-card cyber-glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-indigo-500/20 text-indigo-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-indigo-500 group-hover:text-white transition">
-                    <i class="fas fa-exchange-alt text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">WebP to JPG</h3>
-                <p class="text-slate-500 text-sm">Convert WebP images to JPG.</p>
-            </a>
-            <a href="tool.html?tool=compress-img" data-cat="image" class="tool-card cyber-glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-yellow-500/20 text-yellow-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-yellow-500 group-hover:text-white transition">
-                    <i class="fas fa-compress-arrows-alt text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">Compress Image</h3>
-                <p class="text-slate-500 text-sm">Reduce image size instantly.</p>
-            </a>
 
-            <!-- PDF UTILS -->
-            <a href="tool.html?tool=merge-pdf" data-cat="pdf" class="tool-card cyber-glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-red-500/20 text-red-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-red-500 group-hover:text-white transition">
-                    <i class="fas fa-layer-group text-2xl"></i>
+            <!-- DOCS HUB -->
+            <a href="tool.html?tool=word-to-pdf" data-cat="doc" class="tool-card cyber-glass p-6 rounded-3xl group">
+                <div class="w-14 h-14 bg-blue-600/20 text-blue-600 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition">
+                    <i class="fas fa-file-word text-2xl"></i>
                 </div>
-                <h3 class="text-xl font-bold mb-2">Merge PDF</h3>
-                <p class="text-slate-500 text-sm">Combine multiple PDFs.</p>
+                <h3 class="text-xl font-bold mb-2">Word to PDF</h3>
+                <p class="text-slate-500 text-sm">Convert DOCX to professional PDF.</p>
             </a>
-            <a href="tool.html?tool=split-pdf" data-cat="pdf" class="tool-card cyber-glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-orange-500/20 text-orange-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-orange-500 group-hover:text-white transition">
-                    <i class="fas fa-scissors text-2xl"></i>
+            <a href="tool.html?tool=excel-to-pdf" data-cat="doc" class="tool-card cyber-glass p-6 rounded-3xl group">
+                <div class="w-14 h-14 bg-green-600/20 text-green-600 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-green-600 group-hover:text-white transition">
+                    <i class="fas fa-file-excel text-2xl"></i>
                 </div>
-                <h3 class="text-xl font-bold mb-2">Split PDF</h3>
-                <p class="text-slate-500 text-sm">Separate PDF pages.</p>
+                <h3 class="text-xl font-bold mb-2">Excel to PDF</h3>
+                <p class="text-slate-500 text-sm">Convert spreadsheets to PDF.</p>
             </a>
-            <a href="tool.html?tool=compress-pdf" data-cat="pdf" class="tool-card cyber-glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-blue-500/20 text-blue-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-blue-500 group-hover:text-white transition">
-                    <i class="fas fa-compress-arrows-alt text-2xl"></i>
+            <a href="tool.html?tool=txt-to-pdf" data-cat="doc" class="tool-card cyber-glass p-6 rounded-3xl group">
+                <div class="w-14 h-14 bg-slate-600/20 text-slate-600 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-slate-600 group-hover:text-white transition">
+                    <i class="fas fa-file-alt text-2xl"></i>
                 </div>
-                <h3 class="text-xl font-bold mb-2">Compress PDF</h3>
-                <p class="text-slate-500 text-sm">Minimize PDF file size.</p>
-            </a>
-            <a href="tool.html?tool=pdf-rotate" data-cat="pdf" class="tool-card cyber-glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-indigo-500/20 text-indigo-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-indigo-500 group-hover:text-white transition">
-                    <i class="fas fa-redo text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">Rotate PDF</h3>
-                <p class="text-slate-500 text-sm">Change page orientation.</p>
+                <h3 class="text-xl font-bold mb-2">Text to PDF</h3>
+                <p class="text-slate-500 text-sm">Convert TXT files to PDF.</p>
             </a>
 
             <!-- SECURITY -->
