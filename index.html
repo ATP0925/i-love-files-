@@ -3,152 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduFile Pro | Ultimate Education Tool Hub</title>
+    <title>EduFile Ultra | Next-Gen File OS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; background: #0f172a; color: #f8fafc; }
-        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
-        .tool-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .tool-card:hover { transform: translateY(-10px); border-color: #38bdf8; box-shadow: 0 0 20px rgba(56, 189, 248, 0.2); }
-        .gradient-text { background: linear-gradient(90deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero-glow { position: absolute; top: -10%; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(56,189,248,0.15) 0%, transparent 70%); z-index: -1; pointer-events: none; }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        :root { --primary: #00f2ff; --secondary: #7000ff; --bg: #050810; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: #e2e8f0; overflow-x: hidden; }
+        .cyber-glass { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(0, 242, 255, 0.1); box-shadow: 0 8px 32px 0 rgba(0,0,0,0.8); }
+        .tool-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; }
+        .tool-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, transparent, rgba(0,242,255,0.05), transparent); transform: translateX(-100%); transition: 0.6s; }
+        .tool-card:hover::before { transform: translateX(100%); }
+        .tool-card:hover { transform: scale(1.05); border-color: var(--primary); box-shadow: 0 0 30px rgba(0, 242, 255, 0.2); }
+        .neon-text { color: var(--primary); text-shadow: 0 0 10px rgba(0, 242, 255, 0.5); }
+        .neon-border { border: 1px solid var(--primary); box-shadow: 0 0 10px rgba(0, 242, 255, 0.3); }
+        .hero-gradient { background: radial-gradient(circle at 50% -20%, #1e293b 0%, #050810 60%); }
+        .search-glow:focus { box-shadow: 0 0 20px rgba(0, 242, 255, 0.3); border-color: var(--primary); }
+        .category-pill { transition: all 0.3s; cursor: pointer; }
+        .category-pill.active { background: var(--primary); color: #000; box-shadow: 0 0 15px var(--primary); }
     </style>
 </head>
-<body class="min-h-screen">
-    <div class="hero-glow"></div>
-    
-    <!-- Navbar -->
-    <nav class="glass sticky top-0 z-50 px-6 py-4 flex justify-between items-center">
-        <div class="flex items-center gap-2">
-            <div class="bg-sky-500 p-2 rounded-lg">
-                <i class="fas fa-graduation-cap text-white text-xl"></i>
+<body class="min-h-screen hero-gradient">
+    <!-- Top Navigation -->
+    <nav class="cyber-glass sticky top-0 z-50 px-6 py-4 flex justify-between items-center border-b border-cyan-500/20">
+        <div class="flex items-center gap-3 group cursor-pointer">
+            <div class="bg-gradient-to-br from-cyan-400 to-blue-600 p-2 rounded-xl rotate-3 group-hover:rotate-0 transition-all duration-300">
+                <i class="fas fa-bolt text-white text-xl"></i>
             </div>
-            <span class="text-2xl font-bold tracking-tight">EduFile <span class="gradient-text">Pro</span></span>
+            <span class="text-2xl font-extrabold tracking-tighter">EduFile <span class="neon-text">Ultra</span></span>
         </div>
-        <div class="hidden md:flex gap-8 text-sm font-medium text-slate-400">
-            <a href="#" class="hover:text-sky-400 transition">All Tools</a>
-            <a href="#" class="hover:text-sky-400 transition">PDF Tools</a>
-            <a href="#" class="hover:text-sky-400 transition">Image Tools</a>
-            <a href="#" class="hover:text-sky-400 transition">Security</a>
+        <div class="hidden lg:flex gap-6 text-sm font-semibold text-slate-400">
+            <a href="#" class="hover:text-cyan-400 transition">All-in-One</a>
+            <a href="#" class="hover:text-cyan-400 transition">Enterprise</a>
+            <a href="#" class="hover:text-cyan-400 transition">AI Assistant</a>
         </div>
-        <button class="bg-sky-500 hover:bg-sky-600 px-5 py-2 rounded-full text-sm font-bold transition shadow-lg shadow-sky-500/20">Get Pro</button>
+        <div class="flex items-center gap-4">
+            <button class="text-slate-400 hover:text-white transition"><i class="fas fa-moon"></i></button>
+            <button class="bg-cyan-500 hover:bg-cyan-400 px-5 py-2 rounded-lg text-black font-bold transition-all shadow-lg shadow-cyan-500/30">Login</button>
+        </div>
     </nav>
 
     <!-- Hero Section -->
-    <header class="max-w-6xl mx-auto pt-20 pb-16 px-6 text-center">
-        <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
-            Manage Your Studies <br><span class="gradient-text">with AI Precision</span>
+    <header class="max-w-6xl mx-auto pt-24 pb-12 px-6 text-center">
+        <div class="inline-block px-4 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold mb-6 uppercase tracking-widest animate-bounce">
+            Powered by AI-Neural Engine
+        </div>
+        <h1 class="text-6xl md:text-8xl font-extrabold mb-8 leading-none tracking-tighter">
+            File Processing <br><span class="neon-text">Redefined.</span>
         </h1>
-        <p class="text-slate-400 text-lg max-w-2xl mx-auto mb-10">
-            The most secure, fast, and intuitive tool hub for students. Compress, Convert, and Edit your academic files in seconds. 100% Private & Secure.
-        </p>
-        <div class="relative max-w-xl mx-auto">
-            <input type="text" placeholder="Search for a tool (e.g. Merge PDF, Compress Image...)" class="w-full glass px-6 py-4 rounded-2xl focus:outline-none focus:ring-2 focus:ring-sky-500 transition text-lg">
-            <button class="absolute right-3 top-2.5 bg-sky-500 p-2 px-4 rounded-xl hover:bg-sky-600 transition">
-                <i class="fas fa-search"></i>
-            </button>
+        
+        <!-- Search Bar (Now Functional) -->
+        <div class="relative max-w-2xl mx-auto mb-16">
+            <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+            <div class="relative flex items-center">
+                <i class="fas fa-search absolute left-5 text-slate-500"></i>
+                <input type="text" id="toolSearch" onkeyup="filterTools()" placeholder="Search any tool from 11zon (e.g. 'PDF to Word')..." 
+                class="w-full cyber-glass pl-14 pr-6 py-5 rounded-2xl focus:outline-none search-glow transition-all text-lg">
+            </div>
+        </div>
+
+        <!-- Categories -->
+        <div class="flex flex-wrap justify-center gap-3 mb-12">
+            <div class="category-pill active px-6 py-2 rounded-full border border-cyan-500/30 text-sm font-bold" onclick="filterCategory('all', this)">All Tools</div>
+            <div class="category-pill px-6 py-2 rounded-full border border-cyan-500/30 text-sm font-bold" onclick="filterCategory('pdf', this)">PDF Tools</div>
+            <div class="category-pill px-6 py-2 rounded-full border border-cyan-500/30 text-sm font-bold" onclick="filterCategory('image', this)">Image Tools</div>
+            <div class="category-pill px-6 py-2 rounded-full border border-cyan-500/30 text-sm font-bold" onclick="filterCategory('conv', this)">Converters</div>
         </div>
     </header>
 
     <!-- Tools Grid -->
     <main class="max-w-7xl mx-auto px-6 pb-24">
-        <div class="flex items-center gap-4 mb-12">
-            <h2 class="text-2xl font-bold">Most Popular Tools</h2>
-            <div class="h-px flex-1 bg-slate-800"></div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- PDF Merge -->
-            <a href="tool.html?tool=merge-pdf" class="tool-card glass p-6 rounded-3xl group">
+        <div id="toolsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- PDF TOOLS -->
+            <a href="tool.html?tool=merge-pdf" data-cat="pdf" class="tool-card cyber-glass p-6 rounded-3xl group">
                 <div class="w-14 h-14 bg-red-500/20 text-red-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-red-500 group-hover:text-white transition">
                     <i class="fas fa-layer-group text-2xl"></i>
                 </div>
                 <h3 class="text-xl font-bold mb-2">Merge PDF</h3>
-                <p class="text-slate-400 text-sm">Combine multiple lecture notes into one professional document.</p>
+                <p class="text-slate-500 text-sm">Combine PDFs into one seamless file.</p>
             </a>
-
-            <!-- PDF Split -->
-            <a href="tool.html?tool=split-pdf" class="tool-card glass p-6 rounded-3xl group">
+            <a href="tool.html?tool=split-pdf" data-cat="pdf" class="tool-card cyber-glass p-6 rounded-3xl group">
                 <div class="w-14 h-14 bg-orange-500/20 text-orange-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-orange-500 group-hover:text-white transition">
                     <i class="fas fa-scissors text-2xl"></i>
                 </div>
                 <h3 class="text-xl font-bold mb-2">Split PDF</h3>
-                <p class="text-slate-400 text-sm">Extract specific chapters or pages from a heavy textbook.</p>
+                <p class="text-slate-500 text-sm">Divide PDFs into separate pages.</p>
             </a>
-
-            <!-- PDF Compress -->
-            <a href="tool.html?tool=compress-pdf" class="tool-card glass p-6 rounded-3xl group">
+            <a href="tool.html?tool=compress-pdf" data-cat="pdf" class="tool-card cyber-glass p-6 rounded-3xl group">
                 <div class="w-14 h-14 bg-blue-500/20 text-blue-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-blue-500 group-hover:text-white transition">
                     <i class="fas fa-compress-arrows-alt text-2xl"></i>
                 </div>
                 <h3 class="text-xl font-bold mb-2">Compress PDF</h3>
-                <p class="text-slate-400 text-sm">Reduce file size for portal uploads without losing quality.</p>
+                <p class="text-slate-500 text-sm">Reduce size with high-quality compression.</p>
             </a>
-
-            <!-- Image to PDF -->
-            <a href="tool.html?tool=img-to-pdf" class="tool-card glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-green-500/20 text-green-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-green-500 group-hover:text-white transition">
-                    <i class="fas fa-file-image text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">Image to PDF</h3>
-                <p class="text-slate-400 text-sm">Convert photos of handwritten notes into clean PDFs.</p>
-            </a>
-
-            <!-- Compress Image -->
-            <a href="tool.html?tool=compress-img" class="tool-card glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-purple-500/20 text-purple-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-purple-500 group-hover:text-white transition">
-                    <i class="fas fa-file-archive text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">Compress Image</h3>
-                <p class="text-slate-400 text-sm">Shrink image size while keeping the clarity intact.</p>
-            </a>
-
-            <!-- PDF to JPG -->
-            <a href="tool.html?tool=pdf-to-jpg" class="tool-card glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-yellow-500/20 text-yellow-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-yellow-500 group-hover:text-white transition">
-                    <i class="fas fa-image text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">PDF to JPG</h3>
-                <p class="text-slate-400 text-sm">Extract pages from PDF as high-quality images.</p>
-            </a>
-
-            <!-- Rotate PDF -->
-            <a href="tool.html?tool=rotate-pdf" class="tool-card glass p-6 rounded-3xl group">
+            <a href="tool.html?tool=pdf-rotate" data-cat="pdf" class="tool-card cyber-glass p-6 rounded-3xl group">
                 <div class="w-14 h-14 bg-indigo-500/20 text-indigo-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-indigo-500 group-hover:text-white transition">
                     <i class="fas fa-redo text-2xl"></i>
                 </div>
                 <h3 class="text-xl font-bold mb-2">Rotate PDF</h3>
-                <p class="text-slate-400 text-sm">Fix tilted scans or rotated documents instantly.</p>
+                <p class="text-slate-500 text-sm">Fix the orientation of your PDF pages.</p>
             </a>
-
-            <!-- Word to PDF -->
-            <a href="tool.html?tool=word-to-pdf" class="tool-card glass p-6 rounded-3xl group">
-                <div class="w-14 h-14 bg-sky-500/20 text-sky-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-sky-500 group-hover:text-white transition">
+            <!-- IMAGE TOOLS -->
+            <a href="tool.html?tool=compress-img" data-cat="image" class="tool-card cyber-glass p-6 rounded-3xl group">
+                <div class="w-14 h-14 bg-purple-500/20 text-purple-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-purple-500 group-hover:text-white transition">
+                    <i class="fas fa-file-archive text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Compress Image</h3>
+                <p class="text-slate-500 text-sm">Optimize images without losing detail.</p>
+            </a>
+            <a href="tool.html?tool=img-to-pdf" data-cat="image" class="tool-card cyber-glass p-6 rounded-3xl group">
+                <div class="w-14 h-14 bg-green-500/20 text-green-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-green-500 group-hover:text-white transition">
+                    <i class="fas fa-file-image text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Image to PDF</h3>
+                <p class="text-slate-500 text-sm">Turn your JPG/PNGs into professional PDFs.</p>
+            </a>
+            <!-- CONVERTERS -->
+            <a href="tool.html?tool=pdf-to-word" data-cat="conv" class="tool-card cyber-glass p-6 rounded-3xl group">
+                <div class="w-14 h-14 bg-cyan-500/20 text-cyan-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-cyan-500 group-hover:text-white transition">
                     <i class="fas fa-file-word text-2xl"></i>
                 </div>
-                <h3 class="text-xl font-bold mb-2">Word to PDF</h3>
-                <p class="text-slate-400 text-sm">Convert assignments to PDF for professional submission.</p>
+                <h3 class="text-xl font-bold mb-2">PDF to Word</h3>
+                <p class="text-slate-500 text-sm">Convert PDFs into editable DOCX files.</p>
+            </a>
+            <a href="tool.html?tool=pdf-to-jpg" data-cat="conv" class="tool-card cyber-glass p-6 rounded-3xl group">
+                <div class="w-14 h-14 bg-yellow-500/20 text-yellow-500 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-yellow-500 group-hover:text-white transition">
+                    <i class="fas fa-image text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">PDF to JPG</h3>
+                <p class="text-slate-500 text-sm">Export PDF pages as high-res images.</p>
             </a>
         </div>
     </main>
 
-    <!-- Security Badge -->
-    <section class="max-w-4xl mx-auto px-6 pb-24 text-center">
-        <div class="glass p-8 rounded-3xl flex flex-col md:flex-row items-center justify-center gap-8">
-            <div class="w-16 h-16 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center animate-pulse">
-                <i class="fas fa-shield-alt text-3xl"></i>
-            </div>
-            <div class="text-left">
-                <h4 class="text-xl font-bold mb-2">Bank-Grade Security</h4>
-                <p class="text-slate-400 text-sm">Your files never leave your browser. We use client-side encryption and processing, meaning we never see your data. No uploads, no logs, no leaks.</p>
-            </div>
-        </div>
-    </section>
+    <script>
+        function filterTools() {
+            const input = document.getElementById('toolSearch').value.toLowerCase();
+            const cards = document.querySelectorAll('.tool-card');
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                card.style.display = text.includes(input) ? 'block' : 'none';
+            });
+        }
 
-    <footer class="border-t border-slate-800 py-12 text-center text-slate-500 text-sm">
-        <p>&copy; 2026 EduFile Pro. Built for the next generation of learners.</p>
-    </footer>
+        function filterCategory(cat, el) {
+            document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
+            el.classList.add('active');
+            const cards = document.querySelectorAll('.tool-card');
+            cards.forEach(card => {
+                if(cat === 'all' || card.getAttribute('data-cat') === cat) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
